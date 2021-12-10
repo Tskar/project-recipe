@@ -1,6 +1,9 @@
 import './App.css';
+import Recipie from './recipies/Recipie';
+import Modal from './modal/Modal';
 
 function App() {
+
   return (
     <div className="App">
       <section className="title-bar">
@@ -15,7 +18,9 @@ function App() {
 
         <div className="search-container">
           <div className="search-bar">
-            <input className="search-box" type="text" placeholder="dish,ingridient,keywords..." />
+            <input className="search-box" 
+                  type="text" 
+                  placeholder="dish,ingridient,keywords..." />
             <p>Example:"Milkshake","Banana","Coffee"...</p>
           </div>
 
@@ -23,7 +28,17 @@ function App() {
         </div>
 
       </section>
-      
+      <div className="recipie-box">
+        <Recipie />
+        <Recipie />
+        <Recipie />
+        <Recipie />
+      </div>
+      <div className="Modal-box">
+        <Modal />
+        <Modal />
+      </div>
+
     </div>
   );
 }

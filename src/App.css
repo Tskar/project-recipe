@@ -1,6 +1,6 @@
 .App {
     min-height: 100vh;
-    background-image: linear-gradient(#ffddbd 0%, #b1e8ff 100%);  
+    background-image: linear-gradient(#dadada 0%, #e3f7ff 100%);  
     font-family: 'Open Sans', sans-serif;
     justify-content: center;
     align-items: center;
@@ -27,7 +27,7 @@
 
 .header-info {
     font-size: 3.5rem;
-    color: rgb(100, 65, 65);
+    color: rgb(172, 123, 123);
     font-weight: bold;
     padding: 1.0rem;
 }
@@ -77,7 +77,7 @@
     width: 50%;
     font-size: 1.5em;
     font-weight: bold;
-    background-color: #c38227;
+    background-color: #d39f5c;
     color: white;
     margin: 1rem 0 2rem 0;
     border: none;
@@ -86,6 +86,14 @@
 }
 
 .search-button:hover {
-    background-color: #c58d3e;
+    background-color: #d4bea1;
     font-weight: normal;
+}
+
+.recipie-box {
+    margin-top: 2rem;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-self: left;
 }
