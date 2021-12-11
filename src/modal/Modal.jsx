@@ -1,6 +1,8 @@
 import './modal.css';
 
 function Modal ({trigger, handleClose, title, calories, image, ingredients}) { 
+
+    //modal is turned off until trigger is true or post is clicked
     if (!trigger) return null;
 
     return(

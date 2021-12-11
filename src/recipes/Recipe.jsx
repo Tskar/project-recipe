@@ -5,6 +5,7 @@ import React,{useState} from 'react';
 
 function Recipie ({title, calories, image, ingredients}) {
 
+    //trigger states to control modals
     const[triggered, setTriggered] =useState(false);
 
     return(

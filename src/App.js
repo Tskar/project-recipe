@@ -4,6 +4,7 @@ import {useState, useEffect } from 'react';
 
 function App() {
 
+
   const [recipes, setRecipes] =useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] =useState('');  
@@ -12,16 +13,19 @@ function App() {
     getRecipes();
   }, [query]);
 
+
   const getRecipes = async() => {
     const fetchedData = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${process.env.REACT_APP_EDAMAM_ID}&app_key=${process.env.REACT_APP_EDAMAM_KEY}`);    
     const data = await fetchedData.json();
     setRecipes(data.hits);
   }
 
+  //update the search to new value
   const updateSearch = (e) => {
     setSearch(e.target.value);
   }
 
+  //load the form with new query when submitted
   const getSearch = (e) => {
     e.preventDefault();
     setQuery(search);
