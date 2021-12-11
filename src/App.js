@@ -1,8 +1,32 @@
 import './App.css';
-import Recipie from './recipies/Recipie';
-import Modal from './modal/Modal';
+import Recipe from './recipes/Recipe';
+import {useState, useEffect } from 'react';
 
 function App() {
+
+  const [recipes, setRecipes] =useState([]);
+  const [search, setSearch] = useState('');
+  const [query, setQuery] =useState('');  
+
+  useEffect(() => {
+    getRecipes();
+  }, [query]);
+
+  const getRecipes = async() => {
+    const fetchedData = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${process.env.REACT_APP_EDAMAM_ID}&app_key=${process.env.REACT_APP_EDAMAM_KEY}`);    
+    const data = await fetchedData.json();
+    setRecipes(data.hits);
+  }
+
+  const updateSearch = (e) => {
+    setSearch(e.target.value);
+  }
+
+  const getSearch = (e) => {
+    e.preventDefault();
+    setQuery(search);
+    setSearch('');
+  }
 
   return (
     <div className="App">
@@ -10,7 +34,7 @@ function App() {
         <a href="#">find.recipe</a>
       </section>
 
-      <section className="header-body">
+      <form className="header-body" onSubmit={getSearch} >
         <h1 className="header-info">
           <span>The Hub To Find</span>
           That Recipe
@@ -20,25 +44,25 @@ function App() {
           <div className="search-bar">
             <input className="search-box" 
                   type="text" 
-                  placeholder="dish,ingridient,keywords..." />
+                  placeholder="dish,ingridient,keywords..."
+                  onChange={updateSearch} />
             <p>Example:"Milkshake","Banana","Coffee"...</p>
           </div>
 
           <button className="search-button">Search Recipe</button>
         </div>
 
-      </section>
+      </form>
       <div className="recipie-box">
-        <Recipie />
-        <Recipie />
-        <Recipie />
-        <Recipie />
+        {recipes.map(recipe =>(
+          <Recipe 
+            key={recipe.recipe.label}
+            title={recipe.recipe.label} 
+            image={recipe.recipe.image}
+            ingredients={recipe.recipe.ingredients}
+            calories={recipe.recipe.calories} />
+        ))}
       </div>
-      <div className="Modal-box">
-        <Modal />
-        <Modal />
-      </div>
-
     </div>
   );
 }
